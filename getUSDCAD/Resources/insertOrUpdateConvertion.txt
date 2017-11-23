@@ -1,0 +1,23 @@
+
+BEGIN TRAN;
+IF EXISTS (SELECT * FROM [<<TABLE>>].[YCONVERTION] WHERE CURDEN_0 = '<<CURDEN>>' and CUR_0 = '<<CUR>>' )
+update [<<DATABASE>>].[<<TABLE>>].[YCONVERTION] set
+[CURDEN_0] ='<<CURDEN>>',
+[CUR_0] ='<<CUR>>',
+[CHGSTRDAT_0] ='<<CHGSTRDAT>>',
+[CHGRAT_0] =<<CHGRAT>>,
+[REVCOURS_0] =<<REVCOURS>>
+WHERE CURDEN_0 = '<<CURDEN>>' and CUR_0 = '<<CUR>>'
+else
+Insert into [<<DATABASE>>].[<<TABLE>>].[YCONVERTION]  
+([CURDEN_0],[CUR_0], [CHGSTRDAT_0],[CHGRAT_0],[REVCOURS_0])
+VALUES
+(
+'<<CURDEN>>',
+'<<CUR>>',
+'<<CHGSTRDAT>>',
+<<CHGRAT>>,
+<<REVCOURS>>
+)
+;
+COMMIT TRAN;
